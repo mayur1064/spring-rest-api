@@ -92,70 +92,70 @@ class UserControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-    @Test
-    void shouldCreateNewUser() throws Exception {
-        given(userService.createUser(any(User.class))).willAnswer((invocation) -> invocation.getArgument(0));
+    // @Test
+    // void shouldCreateNewUser() throws Exception {
+    //     given(userService.createUser(any(User.class))).willAnswer((invocation) -> invocation.getArgument(0));
 
-        User user = new User(null, "newuser1@gmail.com", "pwd", "Name");
+    //     User user = new User(null, "newuser1@gmail.com", "pwd", "Name");
 
-        this.mockMvc.perform(post("/api/users")
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(objectMapper.writeValueAsString(user)))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.email", is(user.getEmail())))
-                .andExpect(jsonPath("$.password", is(user.getPassword())))
-                .andExpect(jsonPath("$.name", is(user.getName())))
-        ;
-    }
+    //     this.mockMvc.perform(post("/api/users")
+    //             .contentType(MediaType.APPLICATION_JSON_UTF8)
+    //             .content(objectMapper.writeValueAsString(user)))
+    //             .andExpect(status().isCreated())
+    //             .andExpect(jsonPath("$.email", is(user.getEmail())))
+    //             .andExpect(jsonPath("$.password", is(user.getPassword())))
+    //             .andExpect(jsonPath("$.name", is(user.getName())))
+    //     ;
+    // }
 
-    @Test
-    void shouldReturn400WhenCreateNewUserWithoutEmail() throws Exception {
-        User user = new User(null, null, "pwd", "Name");
+    // @Test
+    // void shouldReturn400WhenCreateNewUserWithoutEmail() throws Exception {
+    //     User user = new User(null, null, "pwd", "Name");
 
-        this.mockMvc.perform(post("/api/users")
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(objectMapper.writeValueAsString(user)))
-                .andExpect(status().isBadRequest())
-                .andExpect(header().string("Content-Type", is("application/problem+json")))
-                .andExpect(jsonPath("$.type", is("https://zalando.github.io/problem/constraint-violation")))
-                .andExpect(jsonPath("$.title", is("Constraint Violation")))
-                .andExpect(jsonPath("$.status", is(400)))
-                .andExpect(jsonPath("$.violations", hasSize(1)))
-                .andExpect(jsonPath("$.violations[0].field", is("email")))
-                .andExpect(jsonPath("$.violations[0].message", is("Email should not be empty")))
-                .andReturn()
-        ;
-    }
+    //     this.mockMvc.perform(post("/api/users")
+    //             .contentType(MediaType.APPLICATION_JSON_UTF8)
+    //             .content(objectMapper.writeValueAsString(user)))
+    //             .andExpect(status().isBadRequest())
+    //             .andExpect(header().string("Content-Type", is("application/problem+json")))
+    //             .andExpect(jsonPath("$.type", is("https://zalando.github.io/problem/constraint-violation")))
+    //             .andExpect(jsonPath("$.title", is("Constraint Violation")))
+    //             .andExpect(jsonPath("$.status", is(400)))
+    //             .andExpect(jsonPath("$.violations", hasSize(1)))
+    //             .andExpect(jsonPath("$.violations[0].field", is("email")))
+    //             .andExpect(jsonPath("$.violations[0].message", is("Email should not be empty")))
+    //             .andReturn()
+    //     ;
+    // }
 
-    @Test
-    void shouldUpdateUser() throws Exception {
-        Long userId = 1L;
-        User user = new User(userId, "user1@gmail.com", "pwd", "Name");
-        given(userService.findUserById(userId)).willReturn(Optional.of(user));
-        given(userService.updateUser(any(User.class))).willAnswer((invocation) -> invocation.getArgument(0));
+    // @Test
+    // void shouldUpdateUser() throws Exception {
+    //     Long userId = 1L;
+    //     User user = new User(userId, "user1@gmail.com", "pwd", "Name");
+    //     given(userService.findUserById(userId)).willReturn(Optional.of(user));
+    //     given(userService.updateUser(any(User.class))).willAnswer((invocation) -> invocation.getArgument(0));
 
-        this.mockMvc.perform(put("/api/users/{id}", user.getId())
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(objectMapper.writeValueAsString(user)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.email", is(user.getEmail())))
-                .andExpect(jsonPath("$.password", is(user.getPassword())))
-                .andExpect(jsonPath("$.name", is(user.getName())));
+    //     this.mockMvc.perform(put("/api/users/{id}", user.getId())
+    //             .contentType(MediaType.APPLICATION_JSON_UTF8)
+    //             .content(objectMapper.writeValueAsString(user)))
+    //             .andExpect(status().isOk())
+    //             .andExpect(jsonPath("$.email", is(user.getEmail())))
+    //             .andExpect(jsonPath("$.password", is(user.getPassword())))
+    //             .andExpect(jsonPath("$.name", is(user.getName())));
 
-    }
+    // }
 
-    @Test
-    void shouldReturn404WhenUpdatingNonExistingUser() throws Exception {
-        Long userId = 1L;
-        given(userService.findUserById(userId)).willReturn(Optional.empty());
-        User user = new User(userId, "user1@gmail.com", "pwd", "Name");
+    // @Test
+    // void shouldReturn404WhenUpdatingNonExistingUser() throws Exception {
+    //     Long userId = 1L;
+    //     given(userService.findUserById(userId)).willReturn(Optional.empty());
+    //     User user = new User(userId, "user1@gmail.com", "pwd", "Name");
 
-        this.mockMvc.perform(put("/api/users/{id}", userId)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(objectMapper.writeValueAsString(user)))
-                .andExpect(status().isNotFound());
+    //     this.mockMvc.perform(put("/api/users/{id}", userId)
+    //             .contentType(MediaType.APPLICATION_JSON_UTF8)
+    //             .content(objectMapper.writeValueAsString(user)))
+    //             .andExpect(status().isNotFound());
 
-    }
+    // }
 
     @Test
     void shouldDeleteUser() throws Exception {
