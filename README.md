@@ -30,6 +30,6 @@ mvn clean install
 ###Build With
 Project ini dibangun menggunakan :
 - OpenJDK 11
-- Spring v2.3.5
+- Spring v2.3.5 . 1
 
 
