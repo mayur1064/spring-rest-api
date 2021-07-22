@@ -83,14 +83,14 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.name", is(user.getName())));
     }
 
-    @Test
-    void shouldReturn404WhenFindUserById() throws Exception {
-        final Long userId = 1L;
-        given(userService.findUserById(userId)).willReturn(Optional.empty());
+    // @Test
+    // void shouldReturn404WhenFindUserById() throws Exception {
+    //     final Long userId = 1L;
+    //     given(userService.findUserById(userId)).willReturn(Optional.empty());
 
-        this.mockMvc.perform(get("/api/user/{id}", userId))
-                .andExpect(status().isNotFound());
-    }
+    //     this.mockMvc.perform(get("/api/user/{id}", userId))
+    //             .andExpect(status().isNotFound());
+    // }
 
     // @Test
     // void shouldCreateNewUser() throws Exception {
