@@ -89,7 +89,7 @@ class UserControllerTest {
         given(userService.findUserById(userId)).willReturn(Optional.empty());
 
         this.mockMvc.perform(get("/api/user/{id}", userId))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
     }
 
     // @Test
