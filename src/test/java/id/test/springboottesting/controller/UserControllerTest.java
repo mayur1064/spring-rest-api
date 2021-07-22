@@ -83,30 +83,30 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.name", is(user.getName())));
     }
 
-    @Test
-    void shouldReturn404WhenFindUserById() throws Exception {
-        final Long userId = 1L;
-        given(userService.findUserById(userId)).willReturn(Optional.empty());
+    // @Test
+    // void shouldReturn404WhenFindUserById() throws Exception {
+    //     final Long userId = 1L;
+    //     given(userService.findUserById(userId)).willReturn(Optional.empty());
 
-        this.mockMvc.perform(get("/api/user/{id}", userId))
-                .andExpect(status().isNotFound());
-    }
+    //     this.mockMvc.perform(get("/api/user/{id}", userId))
+    //             .andExpect(status().isNotFound());
+    // }
 
-    @Test
-    void shouldCreateNewUser() throws Exception {
-        given(userService.createUser(any(User.class))).willAnswer((invocation) -> invocation.getArgument(0));
+    // @Test
+    // void shouldCreateNewUser() throws Exception {
+    //     given(userService.createUser(any(User.class))).willAnswer((invocation) -> invocation.getArgument(0));
 
-        User user = new User(null, "newuser1@gmail.com", "pwd", "Name");
+    //     User user = new User(null, "newuser1@gmail.com", "pwd", "Name");
 
-        this.mockMvc.perform(post("/api/users")
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(objectMapper.writeValueAsString(user)))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.email", is(user.getEmail())))
-                .andExpect(jsonPath("$.password", is(user.getPassword())))
-                .andExpect(jsonPath("$.name", is(user.getName())))
-        ;
-    }
+    //     this.mockMvc.perform(post("/api/users")
+    //             .contentType(MediaType.APPLICATION_JSON_UTF8)
+    //             .content(objectMapper.writeValueAsString(user)))
+    //             .andExpect(status().isCreated())
+    //             .andExpect(jsonPath("$.email", is(user.getEmail())))
+    //             .andExpect(jsonPath("$.password", is(user.getPassword())))
+    //             .andExpect(jsonPath("$.name", is(user.getName())))
+    //     ;
+    // }
 
     // @Test
     // void shouldReturn400WhenCreateNewUserWithoutEmail() throws Exception {
