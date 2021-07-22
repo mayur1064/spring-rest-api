@@ -47,11 +47,7 @@ public class UserController {
         return userService.createUser(user);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public User createUser1(@RequestBody @Valid User user) {
-        return userService.createUser(user);
-    }
+    
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody @Valid User user) {
