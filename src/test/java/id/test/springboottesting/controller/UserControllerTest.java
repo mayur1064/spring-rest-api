@@ -86,7 +86,6 @@ class UserControllerTest {
     @Test
     void shouldReturn404WhenFindUserById() throws Exception {
         final Long userId = 1L;
-        final tt useroi = 1L;
         given(userService.findUserById(userId)).willReturn(Optional.empty());
 
         this.mockMvc.perform(get("/api/user/{id}", userId))
