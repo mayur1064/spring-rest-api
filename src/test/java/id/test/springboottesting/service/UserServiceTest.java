@@ -63,54 +63,54 @@ class UserServiceTest {
         verify(userRepository, never()).save(any(User.class));
     }
 
-    @Test
-    void updateUser() {
-        final User user = new User(1L, "ten@mail.com","teten","teten");
+    // @Test
+    // void updateUser() {
+    //     final User user = new User(1L, "ten@mail.com","teten","teten");
 
-        given(userRepository.save(user)).willReturn(user);
+    //     given(userRepository.save(user)).willReturn(user);
 
-        final User expected = userService.updateUser(user);
+    //     final User expected = userService.updateUser(user);
 
-        assertThat(expected).isNotNull();
+    //     assertThat(expected).isNotNull();
 
-        verify(userRepository).save(any(User.class));
-    }
+    //     verify(userRepository).save(any(User.class));
+    // }
 
-    @Test
-    void shouldReturnFindAll() {
-        List<User> datas = new ArrayList();
-        datas.add(new User(1L, "ten@mail.com","teten","teten"));
-        datas.add(new User(2L, "ten@mail.com","teten","teten"));
-        datas.add(new User(3L, "ten@mail.com","teten","teten"));
+    // @Test
+    // void shouldReturnFindAll() {
+    //     List<User> datas = new ArrayList();
+    //     datas.add(new User(1L, "ten@mail.com","teten","teten"));
+    //     datas.add(new User(2L, "ten@mail.com","teten","teten"));
+    //     datas.add(new User(3L, "ten@mail.com","teten","teten"));
 
-        given(userRepository.findAll()).willReturn(datas);
+    //     given(userRepository.findAll()).willReturn(datas);
 
-        List<User> expected = userService.findAllUsers();
+    //     List<User> expected = userService.findAllUsers();
 
-        assertEquals(expected, datas);
-    }
+    //     assertEquals(expected, datas);
+    // }
 
-    @Test
-    void findUserById(){
-        final Long id = 1L;
-        final User user = new User(1L, "ten@mail.com","teten","teten");
+    // @Test
+    // void findUserById(){
+    //     final Long id = 1L;
+    //     final User user = new User(1L, "ten@mail.com","teten","teten");
 
-        given(userRepository.findById(id)).willReturn(Optional.of(user));
+    //     given(userRepository.findById(id)).willReturn(Optional.of(user));
 
-        final Optional<User> expected  =userService.findUserById(id);
+    //     final Optional<User> expected  =userService.findUserById(id);
 
-        assertThat(expected).isNotNull();
+    //     assertThat(expected).isNotNull();
 
-    }
+    // }
 
-    @Test
-    void shouldBeDelete() {
-        final Long userId=1L;
+    // @Test
+    // void shouldBeDelete() {
+    //     final Long userId=1L;
 
-        userService.deleteUserById(userId);
-        userService.deleteUserById(userId);
+    //     userService.deleteUserById(userId);
+    //     userService.deleteUserById(userId);
 
-        verify(userRepository, times(2)).deleteById(userId);
-    }
+    //     verify(userRepository, times(2)).deleteById(userId);
+    // }
 
 }
