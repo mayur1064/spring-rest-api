@@ -70,7 +70,7 @@ public class UserController {
     }
 
     @PutMapping("/api2/{id}")
-    public ResponseEntity<User> updateUser1(@PathVariable Long id, @RequestBody @Valid User user) {
+    public ResponseEntity<User> updateUser2(@PathVariable Long id, @RequestBody @Valid User user) {
         return userService.findUserById(id)
                 .map(userObj -> {
                     userObj.setId(id);
