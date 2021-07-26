@@ -59,6 +59,16 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/api1/{id}")
+    public ResponseEntity<User> updateUser1(@PathVariable Long id, @RequestBody @Valid User user) {
+        return userService.findUserById(id)
+                .map(userObj -> {
+                    userObj.setId(id);
+                    return ResponseEntity.ok(userService.updateUser(userObj));
+                })
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id) {
         return userService.findUserById(id)
