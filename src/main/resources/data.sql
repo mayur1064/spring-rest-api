@@ -7,7 +7,7 @@ CREATE TABLE users(
     password varchar(100) NOT NULL
 );
 
-INSERT INTO users (name, email, password ) VALUES   ( 'admin', 'admin@mail.com', 'SampleP@s123' ),
-                                                    ( 'johny', 'johny@mail.com', 'SampleP@s123' ),
-                                                    ( 'ramazan', 'rmzn@mail.com', 'SampleP@s123' ),
-                                                    ( 'teten-nugraha', 'teten@mail.com', 'SampleP@s123' );
+INSERT INTO users (name, email, password ) VALUES   ( 'admin', 'admin@mail.com', 'SampleP@s123' );
+INSERT INTO users (name, email, password ) VALUES ( 'johny', 'johny@mail.com', 'SampleP@s123' );
+INSERT INTO users (name, email, password ) VALUES ( 'ramazan', 'rmzn@mail.com', 'SampleP@s123' );
+INSERT INTO users (name, email, password ) VALUES ( 'teten-nugraha', 'teten@mail.com', 'SampleP@s123' );
