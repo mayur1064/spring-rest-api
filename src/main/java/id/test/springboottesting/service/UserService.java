@@ -6,6 +6,8 @@ import id.test.springboottesting.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +21,13 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@PropertySource({"classpath:notifications-${spring.profiles.active}.properties"})
 public class UserService {
 
     private final UserRepository userRepository;
+
+    @Value("${notifications.emails}")
+    private String[] testEmail;
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -51,6 +57,10 @@ public class UserService {
 
     public Optional<User> findUserById(Long id) {
         return userRepository.findById(id);
+    }
+
+    public String[] getEmails() {
+        return testEmail;
     }
 
     public void deleteUserById(Long id) {

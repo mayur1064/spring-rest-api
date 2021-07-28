@@ -34,6 +34,11 @@ public class UserController {
         return userService.findAllUsers();
     }
 
+    @GetMapping("/email")
+    public String[] getEmails() {
+        return userService.getEmails();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         return userService.findUserById(id)
@@ -58,6 +63,8 @@ public class UserController {
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    
 
     // @PutMapping("/api1/{id}")
     // public ResponseEntity<User> updateUser1(@PathVariable Long id, @RequestBody @Valid User user) {
