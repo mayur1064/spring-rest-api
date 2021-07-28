@@ -1,33 +1,5 @@
-server:
-  port: 8088
-
 spring:
-  application:
-    name: user-service
-  datasource:
-    initialization-mode: always
-    url: jdbc:mysql://localhost:3306/user_service_db?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
-    username: root
-    password: root
-    driver-class-name: com.mysql.jdbc.Driver
-    # platform: h2
-  # h2:
-  #   console:
-  #     enabled: true
-  jpa:
-    show-sql: true
-    generate-ddl: true
-    defer-datasource-initialization: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-    sql:
-      init:
-        mode: always
-  main:
-    allow-bean-definition-overriding: true
-
-
+  profiles:
+    active: @activatedProperties@
+  
     
