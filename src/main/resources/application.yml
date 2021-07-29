@@ -1,5 +1,6 @@
 spring:
   profiles:
     active: @activatedProperties@
-  
-    
+  datasource:
+    platform: @activatedProperties@
+    data: classpath*:data-${platform}.sql

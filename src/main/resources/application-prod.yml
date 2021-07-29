@@ -5,7 +5,7 @@ spring:
   application:
     name: user-service
   datasource:
-    # initialization-mode: always
+    initialization-mode: always
     url: jdbc:mysql://localhost:3306/user_service_db_prod
     username: root
     password: root
